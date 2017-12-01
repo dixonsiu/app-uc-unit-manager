@@ -201,34 +201,6 @@ function accountListData() {
 }
 
 /*
- * The purpose of this function is to display the box profile of the selected
- * box
- */
-function openBoxProfile(boxname) {
-    objCommon.hideListTypePopUp();
-    var id = objCommon.isSessionExist();
-    if (id != null) {
-        $("#messageBlock").hide();
-        sessionStorage.boxName = boxname;
-        $("#headingContentBox").html('');
-        $("#headingContentBox").html("Box Profile");
-        $("#mainContent").hide();
-        var target = document.getElementById('spinner');
-        var spinner = new Spinner(opts).spin(target);
-        $("#mainContent").load(contextRoot + '/htmls/boxProfile.html',
-                function() {
-                    if (navigator.userAgent.indexOf("Firefox") != -1) {
-                        objBoxProfile.loadBoxProfilePage();
-                    }
-                    $("#mainContent").show();
-                    spinner.stop();
-                });
-    } else {
-        window.location.href = contextRoot;
-    }
-}
-
-/*
  * The purpose of this function is to display the mapping between role and
  * account
  */
