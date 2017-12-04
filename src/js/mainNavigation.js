@@ -44,33 +44,6 @@ var opts = {
 };
 
 /*
- * The purpose of this function is to display the cell profile against selected cell
- */
-function showCellProfile() {
-    sessionStorage.tabName = "";
-    var contextRoot = sessionStorage.contextRoot;
-    var objCommon = new common();
-    var id = objCommon.isSessionExist();
-    if (id != null) {
-    $("#messageBlock").hide();
-    $("#headingContent").html('');
-    $("#headingContentBox").html('');
-    $("#headingContent").html('Cell Profile');
-    $("#mainContent").hide();
-    var target = document.getElementById('spinner');
-    var spinner = new Spinner(opts).spin(target);
-    $("#mainContent").load(contextRoot + '/htmls/cellProfileData.html', function() {
-                uCellProfile.displayProfileDetails();
-            $("#mainContent").show();
-            spinner.stop();
-            
-    });
-    } else {
-        window.location.href = contextRoot;
-    }
-}
-
-/*
  * The purpose of this function is to display the box list against selected cell
  */
 function boxListData(callback) {
@@ -512,11 +485,9 @@ mainNavigation.prototype.logViewData = function() {
             spinner = new Spinner(opts).spin(target);
         }
         $("#mainContent").load(contextRoot + '/htmls/'+sessionStorage.selectedLanguage+'/log.html',
-        //$("#mainContent").load(contextRoot + '/htmls/boxDetail.html',
                 function() {
                     var objLog = new log();
                     objLog.createEventLogFolderTable();
-                    //uBoxDetail.openBoxDetail('example','W','1-1403244720800','20-Jun-2014 11:42:00', '20-Jun-2014 11:42:00','URL Not Available');
                     $("#mainContent").show();
                     $("#mainContentWebDav").hide();
                     spinner.stop();
